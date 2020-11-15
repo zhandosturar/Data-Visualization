@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" container="width=device-width, initial-scale=1.0">
+  <title>D3 Bar</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+</body>
+
+<script>
+	var data =  [[15, 25], [200, 130], [180, 40],
+				  [105, 95], [15, 220], [130, 65],
+				  [15, 65], [20, 140], [90, 20]];
+
+	var svg = d3.select("body")
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500)
+        .attr("style", "outline: 3px solid green; margin: 50px auto; display: block;");
+
+	svg.selectAll("rect")
+	    .data(data).enter()
+	    .append("rect")
+	    .attr("x", function(d) {return d[0]-15})
+	    .attr("y", function(d) {return d[1]-15})
+		.attr('width', 30)
+	    .attr('height', 30)
+		.attr('stroke', 'yellow')
+		.attr('fill', 'red');
+
+	svg.selectAll("text")
+	    .data(data).enter()
+	    .append("text")
+	    .attr("x", function(d) {return d[0]+20})
+	    .attr("y", function(d) {return d[1]+5})
+	    .text(function(d) {return d[0] + ", " + d[1]})
+	    .attr("font-size", "10px");
+</script>
+</html>
